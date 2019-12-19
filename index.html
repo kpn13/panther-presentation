@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style type="text/css">
+			h1 {font-size: 80px; color:pink;}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="img/panther.png" width="300" style="background:
+					 none;border:none;box-shadow: none">
+					<h1 style="font-size: 80px">Symfony Panther</h1>
+					<h2 style="color: #6B6464">An end2end testing tool</h2>
+
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">About me</h1>
+					Karim PINCHON<br />
+					<ul>
+						<li>developer since ~9 years</li>
+						<li>Currently at Coffreo</li>
+						<li>@kpn13<img src="img/twitter.png" width="100"
+								 style="background:
+					 none;border:none;box-shadow: none; margin: 0" /> </li>
+					</ul>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">For what tests ?</h1>
+					<img src="img/pyramid.png" width="1000" style="background:
+					 none;border:none;box-shadow: none; margin: 0">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">End2end tests</h1>
+					<ul>
+						<li>generally by user interface</li>
+						<li>highest confidence</li>
+						<li>often false positive</li>
+						<li>slow</li>
+						<li>high cost => nominal scenarios</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Manual testing</h1>
+					<div style="float: left;width: 50%">
+						<h4 style="text-decoration:underline">By the
+							developer</h4>
+						<ul>
+							<li>Very slow</li>
+							<li>Not reliable</li>
+							<li>Painful</li>
+						</ul>
+					</div>
+					<div style="float: left;width: 50%">
+						<h4 style="text-decoration:underline">By a dedicated team</h4>
+						<ul>
+							<li>Slow</li>
+							<li>Painful</li>
+							<li>Bad relationship</li>
+						</ul>
+					</div>
+					<img src="img/thumb_down.png" width="100" style="background:
+					 none;border:none;box-shadow: none; margin: 0">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Automated testing</h1>
+					<img src="img/thumb_up.png" width="400" style="background:
+					 none;border:none;box-shadow: none; margin: 0">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">What tools ?</h1>
+					<ul>
+						<li>Selenium</li>
+						<li>Nightwatch.js</li>
+						<li>...</li>
+					</ul>
+					<br />
+					<img src="img/selenium.png" height="250" style="background:
+					 none;border:none;box-shadow: none; margin: 20px">
+					<img src="img/nightwatchjs.png" height="250" style="background:
+					 none;border:none;box-shadow: none; margin: 20px">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">What about symfony ?</h1>
+					<ul style="float:left">
+						<li>PHPUnit + browserKit</li>
+						<li>No browser</li>
+						<li>No real HTTP request</li>
+						<li>No Javascript</li>
+						<li>No css</li>
+					</ul>
+					<img src="img/tired.gif">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Suddenly, a wild kitten appears</h1>
+					<img src="img/panther.png" width="400" style="background:
+					 none;border:none;box-shadow: none; margin: 0">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Symfony Panther</h1>
+					<ul style="float: left">
+						<li>Real HTTP request</li>
+						<li>Real browser</li>
+						<li>CSS / JS execution</li>
+					</ul>
+					<img src="img/thankyou.gif">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Symfony Panther</h1>
+					<ul>
+						<li>Standalone lib</li>
+						<li>WebDriver protocol</li>
+						<li>Facebook’s PHP WebDriver</li>
+						<li>ChromeDriver (experimental support for GeckoDriver)</li>
+						<li>Headless mode</li>
+						<li>Use PHP builtin web server</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Another API to learn ?</h1>
+					<img src="img/no.gif">
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Symfony BrowserKit</h1>
+					<pre><code>
+$client = static::createClient();
+
+$client->request('GET', '/coffreo');
+
+$crawler = $client->clickLink('Create new');
+
+$this->assertContains('Create new Coffreo', $crawler->html());
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Symfony Panther</h1>
+					<pre><code>
+$client = static::createPantherClient();
+
+$client->request('GET', '/coffreo');
+
+$crawler = $client->clickLink('Create new');
+
+$this->assertContains('Create new Coffreo', $crawler->html());
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">What else ?</h1>
+					<h2 style="color: #6B6464">A lot of cool features !</h2>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Screenshots</h1>
+					<pre><code>
+$client->takeScreenshot('foo.png');
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">JavaScript injection</h1>
+					<pre><code>
+$client->executeScript('alert("foo")');
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Async friendly</h1>
+					<pre><code>
+$client->waitFor('.foo');
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Is it over ?</h1>
+					<ul>
+						<li>web scrapping</li>
+						<li>several isolated browsers</li>
+						<li>support Selenium server</li>
+						<li>support remote browser testing services</li>
+						<li>allow to use an external web server</li>
+						<li>no headless mode</li>
+						<li>easy CI integration</li>
+						<li>...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Thank you !</h1>
+				</section>
+
+				<section>
+					<h1 style="font-size: 80px">Some helpful links</h1>
+					<ul style="font-size: 30px">
+						<li>https://github.com/symfony/panther</li>
+						<li>https://github.com/facebook/php-webdriver</li>
+						<li>https://symfony.com/blog/introducing-symfony-panther-a-browser-testing-and-web-scrapping-library-for-php</li>
+						<li>https://les-tilleuls.coop/fr/blog/article/panther-php-symfony</li>
+						<li>https://onestla.tech/</li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
